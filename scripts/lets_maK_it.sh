@@ -1,5 +1,4 @@
 #!/bin/bash
-#used to insert the memory addresses of sys_call_table
 #used to insert name of device where logged keys are stored
 
 #To define items yourself use 2 arguments
